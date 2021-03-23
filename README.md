@@ -1,0 +1,2 @@
+# Cash
+Shop cash simulator
