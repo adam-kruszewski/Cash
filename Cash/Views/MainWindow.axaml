@@ -1,0 +1,59 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Cash.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Cash.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Cash">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+
+  <Window.Resources>
+    <!--<ext:ImageConverter x:Key="variableImage"/>-->
+    <!--<Bitmap x:key="Play1">/Assets/add.png</Bitmap>-->
+  </Window.Resources>
+
+  <Grid RowDefinitions="100,Auto, 100" ColumnDefinitions="1*">
+
+    <Grid Grid.Row="0" Grid.Column="0" RowDefinitions="Auto" ColumnDefinitions="100, 2*, 100, 1*, 100, 100, 100">
+      <TextBlock Text="Produkt" Grid.Row="0" Grid.Column="0" />
+      <TextBox Grid.Row="0" Grid.Column="1"  />
+      <TextBlock Text="Kod" Grid.Row="0" Grid.Column="2" />
+      <TextBox Grid.Row="0" Grid.Column="3"  />
+      <TextBlock Text="Ilość" Grid.Row="0" Grid.Column="4" />
+      <TextBox Grid.Row="0" Grid.Column="5" />
+      <Button Grid.Row="0" Grid.Column="6">
+        <TextBlock Text="Dodaj" />
+      </Button>
+    </Grid>
+
+    <ListBox Items="{Binding MyItems}" Grid.Row="1" Grid.Column="0">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Border Background="Red" CornerRadius="4" Padding="4">
+            <TextBlock Text="Line"/>
+          </Border>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+    <Grid RowDefinitions="100" ColumnDefinitions="1*, 1*, 2*" Grid.Row="2" Grid.Column="0">
+      <Button Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Stretch">
+        <WrapPanel>
+          <TextBlock Text="Nowe"  Canvas.Left="0" Canvas.Top="0"/>
+          <Image  Source="/Assets/add.png" />
+        </WrapPanel>
+      </Button>
+      <Button Grid.Row="0" Grid.Column="1">
+        <TextBlock Text="Usuń" />
+      </Button>
+      <Button Grid.Row="0" Grid.Column="2">
+        <TextBlock Text="Sumuj" />
+      </Button> 
+    </Grid>
+  </Grid>
+</Window>
