@@ -6,7 +6,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Cash.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Cash">
+        Title="Cash"
+        xmlns:ext="clr-namespace:Cash.Converters;assembly=Cash">
 
   <Design.DataContext>
     <vm:MainWindowViewModel/>
@@ -15,6 +16,7 @@
   <Window.Resources>
     <!--<ext:ImageConverter x:Key="variableImage"/>-->
     <!--<Bitmap x:key="Play1">/Assets/add.png</Bitmap>-->
+    <ext:ImageConverter x:Key="variableImage"/>
   </Window.Resources>
 
   <Grid RowDefinitions="100,Auto, 100" ColumnDefinitions="1*">
@@ -45,15 +47,19 @@
       <Button Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Stretch">
         <WrapPanel>
           <TextBlock Text="Nowe"  Canvas.Left="0" Canvas.Top="0"/>
-          <Image  Source="/Assets/add.png" />
+          <Image Source="/Assets/add.png" />
         </WrapPanel>
       </Button>
       <Button Grid.Row="0" Grid.Column="1">
         <TextBlock Text="Usuń" />
       </Button>
       <Button Grid.Row="0" Grid.Column="2">
-        <TextBlock Text="Sumuj" />
-      </Button> 
+        <WrapPanel>
+          <TextBlock Text="Sumuj" />
+          <Image Source="{Binding Greeting, Converter={StaticResource variableImage}}">
+          </Image>
+        </WrapPanel>
+      </Button>
     </Grid>
   </Grid>
 </Window>
