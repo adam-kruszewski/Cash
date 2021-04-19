@@ -16,13 +16,24 @@ namespace Cash.ViewModels
         {
             var list = new List<ListItem>();
             list.Add(new ListItem());
+            list.Add(new ListItem());
 
             return list;
+        }
+
+        public void OnClickOpen()
+        {
+            var a = 1;
         }
     }
 
     public class ListItem
     {
+        public ListItem()
+        {
+            Text = DateTime.Now.ToString();
+        }
 
+        public string Text { get; set; }
     }
 }
