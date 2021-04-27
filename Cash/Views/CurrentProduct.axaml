@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Cash.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Cash.Views.CurrentProduct">
+  <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="Auto" ColumnDefinitions="100, 2*, 100, 1*, 100, 80, 100">
+    <TextBlock Text="Produkt2" Grid.Row="0" Grid.Column="0" />
+    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" />
+    <TextBlock Text="Kod" Grid.Row="0" Grid.Column="2" />
+    <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding BarCode}" />
+    <TextBlock Text="Ilość" Grid.Row="0" Grid.Column="4" />
+    <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding Quantity}"/>
+    <Button Grid.Row="0" Grid.Column="6" Command="{Binding Add}">
+      <TextBlock Text="Dodaj" />
+    </Button>
+  </Grid>
+</UserControl>

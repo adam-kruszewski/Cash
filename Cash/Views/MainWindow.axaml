@@ -7,7 +7,8 @@
         x:Class="Cash.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Cash"
-        xmlns:ext="clr-namespace:Cash.Converters;assembly=Cash">
+        xmlns:ext="clr-namespace:Cash.Converters;assembly=Cash"
+        xmlns:views="clr-namespace:Cash.Views">
 
   <Window.Styles>
     <Style Selector="Button">
@@ -25,7 +26,7 @@
     <ext:ImageConverter x:Key="variableImage"/>
   </Window.Resources>
 
-
+  
 
   <Grid RowDefinitions="50, 100,Auto, 100" ColumnDefinitions="1*">
 
@@ -43,17 +44,9 @@
       </Menu>
     </DockPanel>
 
-    <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="Auto" ColumnDefinitions="100, 2*, 100, 1*, 100, 100, 100">
-      <TextBlock Text="Produkt" Grid.Row="0" Grid.Column="0" />
-      <TextBox Grid.Row="0" Grid.Column="1"  />
-      <TextBlock Text="Kod" Grid.Row="0" Grid.Column="2" />
-      <TextBox Grid.Row="0" Grid.Column="3"  />
-      <TextBlock Text="Ilość" Grid.Row="0" Grid.Column="4" />
-      <TextBox Grid.Row="0" Grid.Column="5" />
-      <Button Grid.Row="0" Grid.Column="6">
-        <TextBlock Text="Dodaj" />
-      </Button>
-    </Grid>
+    <views:CurrentProduct Grid.Row="1" Grid.Column="0" Content="{Binding CurrentProduct}">
+
+    </views:CurrentProduct>
 
     <ListBox Items="{Binding MyItems}" Grid.Row="2" Grid.Column="0">
       <ListBox.ItemTemplate>

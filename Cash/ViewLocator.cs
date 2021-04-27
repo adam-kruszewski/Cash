@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Cash.ViewModels;
@@ -11,8 +12,19 @@ namespace Cash
 
         public IControl Build(object data)
         {
-            var name = data.GetType().FullName!.Replace("ViewModel", "View");
-            var type = Type.GetType(name);
+            Type type;
+            string name = "";
+
+            if (mappings.ContainsKey(data.GetType()))
+            {
+                type = mappings[data.GetType()];
+            }
+            else
+            {
+
+                name = data.GetType().FullName!.Replace(".ViewModels", ".View");
+                type = Type.GetType(name);
+            }
 
             if (type != null)
             {
@@ -28,5 +40,10 @@ namespace Cash
         {
             return data is ViewModelBase;
         }
+
+        private Dictionary<Type, Type> mappings = new Dictionary<Type, Type>
+        {
+            {typeof(CurrentProductViewModel), typeof(Cash.Views.CurrentProduct) }
+        };
     }
 }

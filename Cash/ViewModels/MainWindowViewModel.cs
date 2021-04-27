@@ -11,6 +11,18 @@ namespace Cash.ViewModels
 
         public List<ListItem> MyItems => GetItems();
 
+        public CurrentProductViewModel CurrentProduct { get; set; }
+
+        public MainWindowViewModel()
+        {
+            CurrentProduct = new CurrentProductViewModel()
+            {
+                Name = "Jab³ko",
+                BarCode = "765",
+                Quantity = 1
+            };
+        }
+
         private List<ListItem> GetItems()
         {
             var list = new List<ListItem>();
