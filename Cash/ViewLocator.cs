@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Cash.ViewModels;
+using System;
+using System.Collections.Generic;
 
 namespace Cash
 {
@@ -28,7 +28,9 @@ namespace Cash
 
             if (type != null)
             {
-                return (Control)Activator.CreateInstance(type)!;
+                var result = (Control)App.ServiceProvider.GetService(type);
+
+                return result;
             }
             else
             {

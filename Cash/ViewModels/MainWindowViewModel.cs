@@ -1,3 +1,4 @@
+using Cash.Logic;
 using System;
 using System.Collections.Generic;
 
@@ -13,14 +14,15 @@ namespace Cash.ViewModels
 
         public CurrentProductViewModel CurrentProduct { get; set; }
 
-        public MainWindowViewModel()
+        private readonly IProductRepository productRepository;
+
+        public MainWindowViewModel(
+            IProductRepository productRepository,
+            CurrentProductViewModel currentProduct)
         {
-            CurrentProduct = new CurrentProductViewModel()
-            {
-                Name = "Jab³ko",
-                BarCode = "765",
-                Quantity = 1
-            };
+            this.productRepository = productRepository;
+
+            CurrentProduct = currentProduct;
         }
 
         private List<ListItem> GetItems()
