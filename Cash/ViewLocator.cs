@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Cash.ViewModels;
+using Cash.Views;
 using System;
 using System.Collections.Generic;
 
@@ -45,7 +46,9 @@ namespace Cash
 
         private Dictionary<Type, Type> mappings = new Dictionary<Type, Type>
         {
-            {typeof(CurrentProductViewModel), typeof(Cash.Views.CurrentProduct) }
+            { typeof(CurrentProductViewModel), typeof(CurrentProduct) },
+            { typeof(ProductListViewModel), typeof (ProductList) }
+
         };
     }
 }

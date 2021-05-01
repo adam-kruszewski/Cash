@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Cash.ViewModels
 {
-    public class CurrentProductViewModel : ViewModelBase
+    public class CurrentProductViewModel : ViewModelBase, IShoppingItem
     {
         private readonly IProductRepository productRepository;
 
@@ -37,6 +37,15 @@ namespace Cash.ViewModels
             set => this.RaiseAndSetIfChanged(ref quantity, value);
         }
 
+        private decimal price;
+        public decimal Price
+        {
+            get => price;
+            set => this.RaiseAndSetIfChanged(ref price, value);
+        }
+
+        public Action<IShoppingItem> AddAction { private get; set; }
+
         public CurrentProductViewModel(
             IProductRepository productRepository)
         {
@@ -45,7 +54,8 @@ namespace Cash.ViewModels
 
         public void Add()
         {
-            Console.WriteLine($"Adding product {Name}");
+            if (AddAction != null)
+                AddAction(this);
         }
 
         private void OnBarCodeChanged()
@@ -60,6 +70,7 @@ namespace Cash.ViewModels
                 {
                     Name = oneMatching.Name;
                     Quantity = 1;
+                    Price = oneMatching.Price;
                 }
             }
         }

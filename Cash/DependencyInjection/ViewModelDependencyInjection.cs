@@ -9,6 +9,7 @@ namespace Cash.DependencyInjection
         {
             injector.AddTransient<MainWindowViewModel>();
             injector.AddTransient<CurrentProductViewModel>();
+            injector.AddTransient<ProductListViewModel>();
         }
     }
 }

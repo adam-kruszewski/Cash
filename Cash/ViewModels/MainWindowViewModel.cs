@@ -12,17 +12,23 @@ namespace Cash.ViewModels
 
         public List<ListItem> MyItems => GetItems();
 
-        public CurrentProductViewModel CurrentProduct { get; set; }
+        public CurrentProductViewModel CurrentProduct { get; private set; }
+
+        public ProductListViewModel ProductList { get; private set; }
 
         private readonly IProductRepository productRepository;
 
         public MainWindowViewModel(
             IProductRepository productRepository,
-            CurrentProductViewModel currentProduct)
+            CurrentProductViewModel currentProduct,
+            ProductListViewModel productList)
         {
             this.productRepository = productRepository;
 
             CurrentProduct = currentProduct;
+            ProductList = productList;
+
+            CurrentProduct.AddAction = item => ProductList.Add(item);
         }
 
         private List<ListItem> GetItems()
