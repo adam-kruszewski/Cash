@@ -17,7 +17,7 @@ namespace Cash.ViewModels
         public void Add(IShoppingItem item)
         {
             items.Add(item);
-            this.RaisePropertyChanged("Items");
+            this.RaisePropertyChanged("ItemsToDisplay");
         }
 
         public ProductListViewModel()
