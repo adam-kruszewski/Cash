@@ -1,29 +1,24 @@
 ﻿using ReactiveUI;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Cash.ViewModels
 {
     public class ProductListViewModel : ViewModelBase
     {
-        private List<IShoppingItem> items;
-
-        public IEnumerable<IShoppingItem> Items =>
-            items.AsReadOnly();
+        private List<ProductListItem> itemsToDisplay;
 
         public IEnumerable<ProductListItem> ItemsToDisplay =>
-            items.Select(o => new ProductListItem(o)).ToList().AsReadOnly();
+            itemsToDisplay.AsReadOnly();
 
         public void Add(IShoppingItem item)
         {
-            items.Add(item);
+            itemsToDisplay.Add(new ProductListItem(item));
             this.RaisePropertyChanged("ItemsToDisplay");
         }
 
         public ProductListViewModel()
         {
-            items = new List<IShoppingItem>();
-            items.Add(new FakeItem());
+            itemsToDisplay = new List<ProductListItem>();
         }
 
         private class FakeItem : IShoppingItem
