@@ -53,7 +53,11 @@
         </views:ProductList>
       </ScrollViewer>
 
-      <Grid RowDefinitions="100" ColumnDefinitions="1*, 1*, 2*" Name="Buttons">
+      <views:ShoppingActions MaxHeight="100" Content="{Binding ShoppingActions}">
+        
+      </views:ShoppingActions>
+      
+      <!--<Grid RowDefinitions="100" ColumnDefinitions="1*, 1*, 2*" Name="Buttons">
         <Button Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Stretch">
           <WrapPanel>
             <TextBlock Text="Nowe"  Canvas.Left="0" Canvas.Top="0"/>
@@ -70,7 +74,7 @@
             </Image>
           </WrapPanel>
         </Button>
-      </Grid>
+      </Grid>-->
 
     </myControls:FillingAreaDockPanel>
   </DockPanel>

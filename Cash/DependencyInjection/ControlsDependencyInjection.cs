@@ -9,6 +9,7 @@ namespace Cash.DependencyInjection
         {
             injector.AddTransient<CurrentProduct>();
             injector.AddTransient<ProductList>();
+            injector.AddTransient<ShoppingActions>();
         }
     }
 }

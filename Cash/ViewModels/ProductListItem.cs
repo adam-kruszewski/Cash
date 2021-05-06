@@ -7,8 +7,8 @@
             Name = shoppingItem.Name;
             Quantity = shoppingItem.Quantity.ToString();
             BarCode = shoppingItem.BarCode;
-            Price = shoppingItem.Price.ToString();
-            Total = (shoppingItem.Price * shoppingItem.Quantity).ToString();
+            Price = shoppingItem.Price;
+            Total = shoppingItem.Price * shoppingItem.Quantity;
         }
 
         public string Name { get; private set; }
@@ -17,8 +17,12 @@
 
         public string BarCode { get; private set; }
 
-        public string Price { get; private set; }
+        public decimal Price { get; private set; }
 
-        public string Total { get; private set; }
+        public string PriceToDisplay => Price.ToString();
+
+        public decimal Total { get; private set; }
+
+        public string TotalToDisplay => Total.ToString();
     }
 }

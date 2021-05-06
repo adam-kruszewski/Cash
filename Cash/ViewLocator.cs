@@ -47,7 +47,8 @@ namespace Cash
         private Dictionary<Type, Type> mappings = new Dictionary<Type, Type>
         {
             { typeof(CurrentProductViewModel), typeof(CurrentProduct) },
-            { typeof(ProductListViewModel), typeof (ProductList) }
+            { typeof(ProductListViewModel), typeof (ProductList) },
+            { typeof(ShoppingActionViewModel), typeof(ShoppingActions) }
 
         };
     }

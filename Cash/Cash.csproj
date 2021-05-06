@@ -9,6 +9,11 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Icons\remove.png" />
+    <EmbeddedResource Include="Icons\sum.png" />
+    <EmbeddedResource Include="Icons\new.png" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.0" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0" />

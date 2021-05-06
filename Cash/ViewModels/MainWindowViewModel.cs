@@ -16,19 +16,31 @@ namespace Cash.ViewModels
 
         public ProductListViewModel ProductList { get; private set; }
 
+        public ShoppingActionViewModel ShoppingActions { get; private set; }
+
         private readonly IProductRepository productRepository;
 
         public MainWindowViewModel(
             IProductRepository productRepository,
             CurrentProductViewModel currentProduct,
-            ProductListViewModel productList)
+            ProductListViewModel productList,
+            ShoppingActionViewModel shoppingActions)
         {
             this.productRepository = productRepository;
 
             CurrentProduct = currentProduct;
             ProductList = productList;
+            ShoppingActions = shoppingActions;
 
-            CurrentProduct.AddAction = item => ProductList.Add(item);
+            ShoppingActions.ProductList = productList;
+
+            CurrentProduct.AddAction = item => OnAddCurrentItem(item);
+        }
+
+        private void OnAddCurrentItem(IShoppingItem item)
+        {
+            ProductList.Add(item);
+            ShoppingActions.OnAddedItem(item);
         }
 
         private List<ListItem> GetItems()
