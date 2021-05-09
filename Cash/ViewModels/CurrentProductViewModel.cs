@@ -73,6 +73,11 @@ namespace Cash.ViewModels
                     Price = oneMatching.Price;
                 }
             }
+            else
+            {
+                Name = "";
+                Price = 0m;
+            }
         }
     }
 }
