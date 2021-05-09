@@ -41,16 +41,5 @@ namespace Cash.ViewModels
             itemsToDisplay.Clear();
             NotifyItemToDisplayChanged();
         }
-
-        private class FakeItem : IShoppingItem
-        {
-            public string Name => "Test1";
-
-            public int Quantity => 25;
-
-            public string BarCode => "1983";
-
-            public decimal Price => 8.99m;
-        }
     }
 }

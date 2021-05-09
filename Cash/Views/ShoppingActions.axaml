@@ -26,7 +26,7 @@
     </Button>
     <Button >
       <WrapPanel>
-        <TextBlock Text="Sumuj" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Text="Zapłać" VerticalAlignment="Center" Margin="5"/>
         <Image Source="/Assets/sum.png"/>
         <!--<Image Source="{Binding Greeting, Converter={StaticResource variableImage}}">-->
       </WrapPanel>

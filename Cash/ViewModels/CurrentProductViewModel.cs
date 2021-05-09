@@ -1,6 +1,7 @@
 ﻿using Cash.Logic;
 using ReactiveUI;
 using System;
+using System.Drawing;
 using System.Linq;
 
 namespace Cash.ViewModels
@@ -44,6 +45,13 @@ namespace Cash.ViewModels
             set => this.RaiseAndSetIfChanged(ref price, value);
         }
 
+        private Image image;
+        public Image Image
+        {
+            get => image;
+            set => this.RaiseAndSetIfChanged(ref image, value);
+        }
+
         public Action<IShoppingItem> AddAction { private get; set; }
 
         public CurrentProductViewModel(
@@ -71,11 +79,13 @@ namespace Cash.ViewModels
                     Name = oneMatching.Name;
                     Quantity = 1;
                     Price = oneMatching.Price;
+                    Image = oneMatching.Picture;
                 }
             }
             else
             {
                 Name = "";
+                Image = null;
                 Price = 0m;
             }
         }

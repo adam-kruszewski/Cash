@@ -1,7 +1,10 @@
-﻿using Avalonia.Data.Converters;
+﻿using Avalonia;
+using Avalonia.Data.Converters;
 using Avalonia.Media.Imaging;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -10,12 +13,26 @@ namespace Cash.Converters
 {
     public class ImageConverter : IValueConverter
     {
+        private const double MaxImageHeight = 50;
+        private const double MaxImageWidth = 100;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            using (var fileStream = new FileStream("c:\\Users\\adam\\Downloads\\logo-barca.png", FileMode.Open))
+            if (value == null)
             {
-                Bitmap bitmap = new Bitmap(fileStream);
-                return bitmap;
+                return null;
+            }
+            else
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    (value as Image).Save(memoryStream, ImageFormat.Jpeg);
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+                    var bitmap = new Avalonia.Media.Imaging.Bitmap(memoryStream);
+                    return bitmap;
+                }
+
+                return value;
             }
         }
 

@@ -1,4 +1,6 @@
-﻿namespace Cash.ViewModels
+﻿using System.Drawing;
+
+namespace Cash.ViewModels
 {
     public class ProductListItem
     {
@@ -9,6 +11,7 @@
             BarCode = shoppingItem.BarCode;
             Price = shoppingItem.Price;
             Total = shoppingItem.Price * shoppingItem.Quantity;
+            Image = shoppingItem.Image;
         }
 
         public string Name { get; private set; }
@@ -24,5 +27,7 @@
         public decimal Total { get; private set; }
 
         public string TotalToDisplay => Total.ToString();
+
+        public Image Image { get; private set; }
     }
 }

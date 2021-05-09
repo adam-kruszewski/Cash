@@ -1,4 +1,6 @@
-﻿namespace Cash.ViewModels
+﻿using System.Drawing;
+
+namespace Cash.ViewModels
 {
     public interface IShoppingItem
     {
@@ -9,5 +11,7 @@
         string BarCode { get; }
 
         decimal Price { get; }
+
+        Image Image { get; }
     }
 }

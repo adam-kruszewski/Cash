@@ -4,15 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Cash.ViewModels"
              mc:Ignorable="d"
-             x:Class="Cash.Views.CurrentProduct">
-  <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="Auto" ColumnDefinitions="100, 2*, 100, 1*, 100, 80, 100">
-    <TextBlock Text="Produkt" Grid.Row="0" Grid.Column="0"/>
-    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" IsEnabled="False" />
-    <TextBlock Text="Kod" Grid.Row="0" Grid.Column="2" />
-    <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding BarCode}" />
-    <TextBlock Text="Ilość" Grid.Row="0" Grid.Column="4" />
-    <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding Quantity}"/>
-    <Button Grid.Row="0" Grid.Column="6" Command="{Binding Add}">
+             x:Class="Cash.Views.CurrentProduct"
+             xmlns:ext="clr-namespace:Cash.Converters;assembly=Cash">
+  <UserControl.Resources>
+    <ext:ImageConverter x:Key="imageConverter"/>
+  </UserControl.Resources>
+  <UserControl.Styles>
+    <Style Selector="TextBlock.label">
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="TextBox.entry">
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+  </UserControl.Styles>
+
+  <Grid RowDefinitions="50" ColumnDefinitions="100, 2*, 100, 100, 1*, 100, 80, 100">
+    <TextBlock Text="Produkt" Grid.Row="0" Grid.Column="0" Classes="label"/>
+    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" IsEnabled="False" Classes="entry" />
+    <Image Source="{Binding Image, Converter={StaticResource imageConverter}}" Height="50" Grid.Row="0" Grid.Column="2"/>
+    <TextBlock Text="Kod" Grid.Row="0" Grid.Column="3" Classes="label" />
+    <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding BarCode}" Classes="entry" />
+    <TextBlock Text="Ilość" Grid.Row="0" Grid.Column="5" Classes="label" />
+    <TextBox Grid.Row="0" Grid.Column="6" Text="{Binding Quantity}" Classes="entry" />
+    <Button Grid.Row="0" Grid.Column="7" Command="{Binding Add}">
       <TextBlock Text="Dodaj" />
     </Button>
   </Grid>
