@@ -1,6 +1,12 @@
 using Cash.Logic;
+using Cash.Views;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Cash.ViewModels
 {
@@ -20,6 +26,10 @@ namespace Cash.ViewModels
 
         private readonly IProductRepository productRepository;
 
+        public ICommand PrintCodesCommand { get; }
+
+        public Interaction<PrintCodesViewModel, PrintCodesViewModel> ShowDialog { get; }
+
         public MainWindowViewModel(
             IProductRepository productRepository,
             CurrentProductViewModel currentProduct,
@@ -35,6 +45,15 @@ namespace Cash.ViewModels
             ShoppingActions.ProductList = productList;
 
             CurrentProduct.AddAction = item => OnAddCurrentItem(item);
+
+            ShowDialog = new Interaction<PrintCodesViewModel, PrintCodesViewModel>();
+
+            PrintCodesCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                var model = (PrintCodesViewModel) App.ServiceProvider.GetService(typeof(PrintCodesViewModel));
+
+                var result = await ShowDialog.Handle(model);
+            });
         }
 
         private void OnAddCurrentItem(IShoppingItem item)
@@ -55,6 +74,11 @@ namespace Cash.ViewModels
         public void OnClickOpen()
         {
             var a = 1;
+        }
+
+        public void OnPrintCodes()
+        {
+            Console.WriteLine("On print codes");
         }
     }
 

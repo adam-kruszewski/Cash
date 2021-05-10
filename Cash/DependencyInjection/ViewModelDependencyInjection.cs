@@ -11,6 +11,7 @@ namespace Cash.DependencyInjection
             injector.AddTransient<CurrentProductViewModel>();
             injector.AddTransient<ProductListViewModel>();
             injector.AddTransient<ShoppingActionViewModel>();
+            injector.AddTransient<PrintCodesViewModel>();
         }
     }
 }
