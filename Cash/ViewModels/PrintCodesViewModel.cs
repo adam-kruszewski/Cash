@@ -34,7 +34,7 @@ namespace Cash.ViewModels
             {
                 var pdfBytes =
                     printCodeService.PrintCodesToPdf(
-                        productRepository.GetAll().Select(o => new ProductCodeToPrint(o.BarCode, 1)));
+                        productRepository.GetAll().Select(o => new ProductCodeToPrint(o.BarCode, 10, o.Name)));
 
                 File.WriteAllBytes(FilePath, pdfBytes);
             });
