@@ -31,8 +31,6 @@ namespace Cash.Converters
                     var bitmap = new Avalonia.Media.Imaging.Bitmap(memoryStream);
                     return bitmap;
                 }
-
-                return value;
             }
         }
 

@@ -8,6 +8,7 @@ namespace Cash.DependencyInjection
         public void Init(IServiceCollection injector)
         {
             injector.AddTransient<IProductRepository, ProductRepository>();
+            injector.AddTransient<IPrintCodesService, PrintCodeService>();
         }
     }
 }

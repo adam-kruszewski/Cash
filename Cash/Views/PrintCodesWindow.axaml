@@ -21,9 +21,9 @@
         <TextBlock Text="Lista produktów" />
       </WrapPanel>
       <StackPanel Orientation="Horizontal">
-        <Button>
+        <Button Command="{Binding PrintCommand}">
           <WrapPanel>
-            <TextBlock Text="Drukuj" />
+            <TextBlock Text="Drukuj"/>
             <!--<Image Source="/Assets/add.png" />-->
           </WrapPanel>
         </Button>
