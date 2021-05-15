@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Cash.ViewModels;
+using System;
 
 namespace Cash.Views
 {
@@ -16,7 +18,20 @@ namespace Cash.Views
 
         private void InitializeComponent()
         {
-            AvaloniaXamlLoader.Load(this);
+            try
+            {
+                AvaloniaXamlLoader.Load(this);
+            }catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        protected override void OnDataContextChanged(EventArgs e)
+        {
+            base.OnDataContextChanged(e);
+            var viewModel = (PrintCodesViewModel)DataContext;
+            viewModel.CloseAction = () => Close();
         }
     }
 }

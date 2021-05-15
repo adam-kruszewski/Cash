@@ -9,6 +9,10 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Icons\jablko.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\jablko.jpg" />
     <EmbeddedResource Include="Icons\remove.png" />
     <EmbeddedResource Include="Icons\sum.png" />
     <EmbeddedResource Include="Icons\new.png" />

@@ -26,7 +26,9 @@ namespace Cash.Converters
             {
                 using (var memoryStream = new MemoryStream())
                 {
-                    (value as Image).Save(memoryStream, ImageFormat.Jpeg);
+                    var bitmap1 = new System.Drawing.Bitmap(value as Image);
+                    //(value as Image)
+                        bitmap1.Save(memoryStream, ImageFormat.Jpeg);
                     memoryStream.Seek(0, SeekOrigin.Begin);
                     var bitmap = new Avalonia.Media.Imaging.Bitmap(memoryStream);
                     return bitmap;

@@ -52,5 +52,10 @@ namespace Cash
 
             base.OnFrameworkInitializationCompleted();
         }
+
+        protected override void LogBindingError(AvaloniaProperty property, System.Exception e)
+        {
+            base.LogBindingError(property, e);
+        }
     }
 }

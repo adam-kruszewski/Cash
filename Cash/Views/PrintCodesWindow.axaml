@@ -2,10 +2,12 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Cash.ViewModels"
        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600"
        x:Class="Cash.Views.PrintCodesWindow"
        xmlns:myControls="clr-namespace:Cash.Controls"
-        xmlns:views="clr-namespace:Cash.Views"
+       xmlns:views="clr-namespace:Cash.Views"
+       xmlns:ext="clr-namespace:Cash.Converters;assembly=Cash"
        Title="Drukuj kody kreskowe"
        ExtendClientAreaToDecorationsHint="False"
        WindowStartupLocation="CenterOwner"
@@ -13,33 +15,53 @@
        SystemDecorations="Full"
        Width="600"
        Height="600">
-    <myControls:FillingAreaDockPanel LastChildFill="True">
-      <WrapPanel Orientation="Horizontal">
-        <TextBlock Text="Plik wydruku: " />
-        <TextBox Text="{Binding FilePath}" />
-      </WrapPanel>
-      <ScrollViewer Name="ScrollViewer" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top" MaxHeight="300">
-        <views:ProductToPrintCodeList Content="{Binding ProductToPrintCodeList}" HorizontalAlignment="Stretch">
+  <Window.Resources>
+    <!--<ext:ImageConverter x:Key="variableImage"/>-->
+    <!--<Bitmap x:key="Play1">/Assets/add.png</Bitmap>-->
+    <ext:ImageConverter x:Key="imageConverter"/>
+  </Window.Resources>
 
-        </views:ProductToPrintCodeList>
-      </ScrollViewer>
-      <StackPanel Orientation="Horizontal">
-        <Button Command="{Binding PrintCommand}">
-          <WrapPanel>
-            <TextBlock Text="Drukuj"/>
-            <!--<Image Source="/Assets/add.png" />-->
-          </WrapPanel>
-        </Button>
-        <Button>
-          <WrapPanel>
-            <TextBlock Text="Zamknij" />
-            <!--<Image Source="/Assets/add.png" />-->
-          </WrapPanel>
-        </Button>
-      </StackPanel>
-    </myControls:FillingAreaDockPanel>
+  <myControls:FillingAreaDockPanel LastChildFill="True">
+    <WrapPanel Orientation="Horizontal">
+      <TextBlock Text="Plik wydruku: " />
+      <TextBox Text="{Binding FilePath}" />
+      <!--<Image Source="/Assets/add.png" />-->
+      <!--<Image Source="{Binding CloseImage, Converter={StaticResource imageConverter}}" Height="50" />-->
+    </WrapPanel>
+    <ScrollViewer Name="ScrollViewer" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top" MaxHeight="300">
+      <views:ProductToPrintCodeList Content="{Binding ProductToPrintCodeList}" HorizontalAlignment="Stretch">
 
-    <!--<Panel Margin="50">
-    <TextBlock Text="Print codes" />
-  </Panel>-->
+      </views:ProductToPrintCodeList>
+    </ScrollViewer>
+    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+      <Button Command="{Binding PrintCommand}" Classes="DefaultButton">
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="Drukuj" Classes="ButtonText"/>
+          <Image Source="{Binding CloseImage, Converter={StaticResource imageConverter}}" Height="50" />
+        </StackPanel>
+      </Button>
+
+      <Button Command="{Binding CloseCommand}" Classes="DefaultButton">
+        <StackPanel Orientation="Horizontal" Height="50">
+          <TextBlock Text="Zamknij"  Classes="ButtonText"/>
+          <Image Source="/Assets/add.png" Height="50"/>
+        </StackPanel>
+      </Button>
+    </StackPanel>
+    <!--<StackPanel Orientation="Horizontal">
+      <Button Command="{Binding PrintCommand}" Classes="DefaultButton">
+        <WrapPanel>
+          <TextBlock Text="Drukuj"/>
+          <Image Source="/Assets/add.png" />
+        </WrapPanel>
+      </Button>
+      <Button Command="{Binding CloseCommand}" Classes="DefaultButton">
+        <WrapPanel>
+          <TextBlock Text="Zamknij" />
+          <Image Source="{Binding CloseImage, Converter={StaticResource imageConverter}}" Height="50" />
+          <Image Source="/Assets/add.png" />
+        </WrapPanel>
+      </Button>
+    </StackPanel>-->
+  </myControls:FillingAreaDockPanel>
 </Window>
