@@ -48,8 +48,9 @@ namespace Cash
         {
             { typeof(CurrentProductViewModel), typeof(CurrentProduct) },
             { typeof(ProductListViewModel), typeof (ProductList) },
-            { typeof(ShoppingActionViewModel), typeof(ShoppingActions) }
-
+            { typeof(ShoppingActionViewModel), typeof(ShoppingActions) },
+            { typeof(PrintCodesViewModel), typeof(ProductToPrintCodeList) },
+            { typeof(ProductToPrintCodeListViewModel), typeof(ProductToPrintCodeList) }
         };
     }
 }

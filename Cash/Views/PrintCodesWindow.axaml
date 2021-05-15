@@ -5,6 +5,7 @@
        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600"
        x:Class="Cash.Views.PrintCodesWindow"
        xmlns:myControls="clr-namespace:Cash.Controls"
+        xmlns:views="clr-namespace:Cash.Views"
        Title="Drukuj kody kreskowe"
        ExtendClientAreaToDecorationsHint="False"
        WindowStartupLocation="CenterOwner"
@@ -17,9 +18,11 @@
         <TextBlock Text="Plik wydruku: " />
         <TextBox Text="{Binding FilePath}" />
       </WrapPanel>
-      <WrapPanel>
-        <TextBlock Text="Lista produktów" />
-      </WrapPanel>
+      <ScrollViewer Name="ScrollViewer" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top" MaxHeight="300">
+        <views:ProductToPrintCodeList Content="{Binding ProductToPrintCodeList}" HorizontalAlignment="Stretch">
+
+        </views:ProductToPrintCodeList>
+      </ScrollViewer>
       <StackPanel Orientation="Horizontal">
         <Button Command="{Binding PrintCommand}">
           <WrapPanel>

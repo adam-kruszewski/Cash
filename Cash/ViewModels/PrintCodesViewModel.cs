@@ -15,13 +15,17 @@ namespace Cash.ViewModels
 
         private readonly IPrintCodesService printCodeService;
         private readonly IProductRepository productRepository;
+        public ProductToPrintCodeListViewModel ProductToPrintCodeList { get; private set; }
 
         public PrintCodesViewModel(
             IPrintCodesService printCodeService,
-            IProductRepository productRepository)
+            IProductRepository productRepository,
+            ProductToPrintCodeListViewModel productToPrintCodeList
+            )
         {
             this.printCodeService = printCodeService;
             this.productRepository = productRepository;
+            ProductToPrintCodeList = productToPrintCodeList;
 
             Initialize();
         }
@@ -32,9 +36,13 @@ namespace Cash.ViewModels
 
             PrintCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                var pdfBytes =
-                    printCodeService.PrintCodesToPdf(
-                        productRepository.GetAll().Select(o => new ProductCodeToPrint(o.BarCode, 10, o.Name)));
+                var itemsToPrint =
+                    ProductToPrintCodeList
+                        .PrintItems
+                        .Where(o => o.Count > 0)
+                        .Select(o => new ProductCodeToPrint(o.Code, o.Count, o.Name));
+
+                var pdfBytes = printCodeService.PrintCodesToPdf(itemsToPrint);
 
                 File.WriteAllBytes(FilePath, pdfBytes);
             });

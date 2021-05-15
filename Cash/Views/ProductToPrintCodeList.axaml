@@ -3,32 +3,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Cash.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="250"
              x:Class="Cash.Views.ProductToPrintCodeList"
              xmlns:ext="clr-namespace:Cash.Converters;assembly=Cash">
   <UserControl.Resources>
     <ext:ImageConverter x:Key="imageConverter"/>
   </UserControl.Resources>
 
-  <ListBox Items="{Binding ItemsToDisplay}" ClipToBounds="True">
-    <TextBlock Text="Tu będzie nagłówek listy" />
+  <ListBox Items="{Binding PrintItems}" ClipToBounds="True" VerticalAlignment="Stretch" MinWidth="330">
+    <!--<Grid RowDefinitions="50" ColumnDefinitions="200, 80, 50">
+      <TextBlock Text="Nazwa" Grid.Row="0" Grid.Column="0" />
+      <TextBlock Text="Kod" Grid.Row="0" Grid.Column="1" />
+      <TextBlock Text="Liczba" Grid.Row="0" Grid.Column="2" />
+    </Grid>-->
+
+    
     <ListBox.ItemTemplate>
       <DataTemplate>
-        <!--<Grid RowDefinitions="50" ColumnDefinitions="250, 50, 50, 50, 50, 50">
-
-          <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0"/>
-
-          <Image Source="{Binding Image, Converter={StaticResource imageConverter}}" Height="50" Grid.Row="0" Grid.Column="1"/>
-
-          <TextBlock Text="{Binding BarCode}" Grid.Row="0" Grid.Column="2" />
-
-          <TextBlock Text="{Binding Price}" Grid.Row="0" Grid.Column="3" />
-
-          <TextBlock Text="{Binding Quantity}" Grid.Row="0" Grid.Column="4" />
-
-          <TextBlock Text="{Binding Total}" Grid.Row="0" Grid.Column="5" />
-
-        </Grid>-->
+        <Grid RowDefinitions="50" ColumnDefinitions="200, 80, 50">
+            <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" />
+            <TextBlock Text="{Binding Code}" Grid.Row="0" Grid.Column="1" />
+            <TextBox Text="{Binding Count}" Grid.Row="0" Grid.Column="2" />
+        </Grid>
       </DataTemplate>
     </ListBox.ItemTemplate>
   </ListBox>
