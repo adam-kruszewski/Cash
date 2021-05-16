@@ -25,7 +25,7 @@ namespace Cash.ViewModels
             get { return barCode; }
             set
             {
-                barCode = value;
+                this.RaiseAndSetIfChanged(ref barCode, value);
                 OnBarCodeChanged();
             }
         }
@@ -84,10 +84,19 @@ namespace Cash.ViewModels
             }
             else
             {
-                Name = "";
-                Image = null;
-                Price = 0m;
+                Clear();
             }
+        }
+
+        public void Clear(bool clearCode = false)
+        {
+            Name = "";
+            Image = null;
+            Price = 0m;
+            Quantity = 0;
+
+            if (clearCode)
+                BarCode = "";
         }
     }
 }

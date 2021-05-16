@@ -59,6 +59,7 @@ namespace Cash.ViewModels
         private void OnAddCurrentItem(IShoppingItem item)
         {
             ProductList.Add(item);
+            CurrentProduct.Clear(clearCode: true);
             ShoppingActions.OnAddedItem(item);
         }
 
