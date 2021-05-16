@@ -22,5 +22,9 @@
       <Setter Property="Foreground" Value="Black" />
       <Setter Property="Margin" Value="4" />
     </Style>
+    <Style Selector="TextBlock.TextInGrid">
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="Padding" Value="5" />
+    </Style>
   </Application.Styles>
 </Application>

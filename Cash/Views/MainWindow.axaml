@@ -50,7 +50,7 @@
       </views:CurrentProduct>
 
       <ScrollViewer Name="ScrollViewer" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top" MaxHeight="300">
-        <views:ProductList Content="{Binding ProductList}">
+        <views:ProductList DataContext="{Binding ProductList}">
 
         </views:ProductList>
       </ScrollViewer>
