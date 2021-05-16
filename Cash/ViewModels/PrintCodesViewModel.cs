@@ -41,8 +41,8 @@ namespace Cash.ViewModels
             var resourceName =
             GetType().Assembly.GetManifestResourceNames().Single(o => o.EndsWith("jablko.jpg"));
 
-            //using (var stream = GetType().Assembly.GetManifestResourceStream(resourceName))
-            using (var stream = new FileStream("c:\\adam\\projekty\\git\\Cash\\Cash\\Icons\\jablko.jpg", FileMode.Open))
+            using (var stream = GetType().Assembly.GetManifestResourceStream(resourceName))
+            //using (var stream = new FileStream("c:\\adam\\projekty\\git\\Cash\\Cash\\Icons\\jablko.jpg", FileMode.Open))
             {
                 CloseImage = Image.FromStream(stream);
             }
