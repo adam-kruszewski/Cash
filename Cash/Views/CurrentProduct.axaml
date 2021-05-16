@@ -23,7 +23,7 @@
     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" IsEnabled="False" Classes="entry" />
     <Image Source="{Binding Image, Converter={StaticResource imageConverter}}" Height="50" Grid.Row="0" Grid.Column="2"/>
     <TextBlock Text="Kod" Grid.Row="0" Grid.Column="3" Classes="label" />
-    <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding BarCode}" Classes="entry" />
+    <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding BarCode}" Classes="entry" Name="BarCode"/>
     <TextBlock Text="Ilość" Grid.Row="0" Grid.Column="5" Classes="label" />
     <TextBox Grid.Row="0" Grid.Column="6" Text="{Binding Quantity}" Classes="entry" />
     <Button Grid.Row="0" Grid.Column="7" Command="{Binding Add}">

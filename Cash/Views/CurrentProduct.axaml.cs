@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Cash.ViewModels;
+using System;
 
 namespace Cash.Views
 {
@@ -15,5 +17,21 @@ namespace Cash.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
+
+        protected override void OnDataContextChanged(EventArgs e)
+        {
+            base.OnDataContextChanged(e);
+
+            var viewModel = (CurrentProductViewModel)DataContext;
+
+            viewModel.GainFocusOnBarCodeFieldAction =
+                () =>
+                {
+                    var barCodeControl = this.FindControl<TextBox>("BarCode");
+                    barCodeControl.Focus();
+                };
+        }
+
+        
     }
 }

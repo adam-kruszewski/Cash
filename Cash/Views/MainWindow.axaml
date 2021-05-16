@@ -46,7 +46,7 @@
     </DockPanel>
 
     <myControls:FillingAreaDockPanel LastChildFill="False">
-      <views:CurrentProduct  Content="{Binding CurrentProduct}" Name="currentProduct">
+      <views:CurrentProduct  DataContext="{Binding CurrentProduct}" Name="currentProduct">
       </views:CurrentProduct>
 
       <ScrollViewer Name="ScrollViewer" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top" MaxHeight="300">

@@ -3,6 +3,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using Cash.ViewModels;
 using ReactiveUI;
+using System;
 using System.Reactive;
 using System.Threading.Tasks;
 
@@ -34,6 +35,5 @@ namespace Cash.Views
             var result = await dialog.ShowDialog<PrintCodesViewModel>(this);
             interaction.SetOutput(result);
         }
-
     }
 }

@@ -1,21 +1,14 @@
 using Cash.Logic;
-using Cash.Views;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
-using System.Reactive;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Cash.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string Greeting => "Welcome to Avalonia!";
-
-        public string Greeting2 => "Hello world";
-
         public List<ListItem> MyItems => GetItems();
 
         public CurrentProductViewModel CurrentProduct { get; private set; }

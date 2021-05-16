@@ -54,6 +54,8 @@ namespace Cash.ViewModels
 
         public Action<IShoppingItem> AddAction { private get; set; }
 
+        public Action GainFocusOnBarCodeFieldAction { private get; set; }
+
         public CurrentProductViewModel(
             IProductRepository productRepository)
         {
@@ -96,7 +98,16 @@ namespace Cash.ViewModels
             Quantity = 0;
 
             if (clearCode)
+            {
                 BarCode = "";
+                MoveFocusToBarCode();
+            }
+        }
+
+        private void MoveFocusToBarCode()
+        {
+            if (GainFocusOnBarCodeFieldAction != null)
+                GainFocusOnBarCodeFieldAction();
         }
     }
 }
