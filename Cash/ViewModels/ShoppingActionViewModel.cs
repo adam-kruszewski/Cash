@@ -1,5 +1,7 @@
-﻿using System.Linq;
-using ReactiveUI;
+﻿using ReactiveUI;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Windows.Input;
 
 namespace Cash.ViewModels
 {
@@ -7,6 +9,21 @@ namespace Cash.ViewModels
     {
         public ProductListViewModel ProductList { private get; set; }
 
+        public ICommand DisplaySumCommand { get; private set; }
+
+        public Interaction<DisplayMoneyViewModel, DisplayMoneyViewModel> ShowMoney { get; }
+
+        public ShoppingActionViewModel()
+        {
+            ShowMoney = new Interaction<DisplayMoneyViewModel, DisplayMoneyViewModel>();
+
+            DisplaySumCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                var model = (DisplayMoneyViewModel)App.ServiceProvider.GetService(typeof(DisplayMoneyViewModel));
+
+                var result = await ShowMoney.Handle(model);
+            });
+        }
         public void OnAddedItem(IShoppingItem item)
         {
             this.RaisePropertyChanged("TotalSum");

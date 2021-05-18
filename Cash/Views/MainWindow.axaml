@@ -55,7 +55,7 @@
         </views:ProductList>
       </ScrollViewer>
 
-      <views:ShoppingActions MaxHeight="100" Content="{Binding ShoppingActions}">
+      <views:ShoppingActions MaxHeight="100" DataContext="{Binding ShoppingActions}">
         
       </views:ShoppingActions>
       
