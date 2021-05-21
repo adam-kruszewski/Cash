@@ -1,5 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using Cash.Controls;
+using Cash.Controls.ViewModels;
 using Cash.ViewModels;
 using Cash.Views;
 using System;
@@ -52,6 +54,8 @@ namespace Cash
             { typeof(PrintCodesViewModel), typeof(ProductToPrintCodeList) },
             { typeof(ProductToPrintCodeListViewModel), typeof(ProductToPrintCodeList) },
             { typeof(DisplayMoneyViewModel), typeof (DisplayMoney) }
+            //,
+            //{ typeof(GenericListViewModel), typeof(GenericList) }
         };
     }
 }

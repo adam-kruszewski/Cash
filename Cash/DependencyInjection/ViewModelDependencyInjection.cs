@@ -1,4 +1,5 @@
-﻿using Cash.ViewModels;
+﻿using Cash.Controls.ViewModels;
+using Cash.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cash.DependencyInjection
@@ -14,6 +15,7 @@ namespace Cash.DependencyInjection
             injector.AddTransient<PrintCodesViewModel>();
             injector.AddTransient<ProductToPrintCodeListViewModel>();
             injector.AddTransient<DisplayMoneyViewModel>();
+            injector.AddTransient<GenericListViewModel<ConvertedMoneyItem>>();
         }
     }
 }
