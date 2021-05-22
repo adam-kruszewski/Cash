@@ -7,6 +7,6 @@
         Title="DisplayMoney"
         xmlns:myControls="clr-namespace:Cash.Controls">
   <StackPanel>
-    <myControls:GenericList DataContext="{Binding ConvertedMoney}"/>
+    <myControls:GenericList DataContext="{Binding ConvertedMoney}" Number="1" CustomColumnDefinition="100, 200"/>
   </StackPanel>
 </Window>

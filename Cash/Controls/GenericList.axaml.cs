@@ -15,6 +15,22 @@ namespace Cash.Controls
 
         private Type typeOfRecord;
 
+        private ListBox listboxContent;
+
+
+        private string customColumnDefinition;
+        public string CustomColumnDefinition
+        {
+            get => customColumnDefinition;
+            set
+            {
+                customColumnDefinition = value;
+                SetColumnDefinitionInViewModelIfPossible();
+            }
+        }
+
+        public int Number { get; set; }
+
         public GenericList()
         {
             InitializeComponent();
@@ -25,6 +41,9 @@ namespace Cash.Controls
             AvaloniaXamlLoader.Load(this);
 
             headerGrid = this.FindControl<Grid>("HeaderGrid");
+
+            //listboxContent = this.FindControl<ListBox>("ListContent");
+            //listboxContent.AttachedToVisualTree += ListboxContent_AttachedToVisualTree;
         }
 
         protected override void OnDataContextChanged(EventArgs e)
@@ -32,7 +51,6 @@ namespace Cash.Controls
             base.OnDataContextChanged(e);
 
             var t1 = typeof(GenericListViewModel<>);
-
 
             var dataContextType = DataContext?.GetType()?.GetGenericTypeDefinition();
 
@@ -44,10 +62,17 @@ namespace Cash.Controls
                     GenerateHeader(itemType);
             }
 
-            //if (DataContext is typeof(GenericListViewModel<>))
-            //{
+            SetColumnDefinitionInViewModelIfPossible();
+        }
 
-            //}
+        private void SetColumnDefinitionInViewModelIfPossible()
+        {
+            var canSetColumnDefinitionViewModel = DataContext as ICanSetColumnDefinition;
+
+            if (canSetColumnDefinitionViewModel != null)
+            {
+                canSetColumnDefinitionViewModel.ColumnDefinition = CustomColumnDefinition;
+            }
         }
 
         private void GenerateHeader(Type itemType)
@@ -57,9 +82,14 @@ namespace Cash.Controls
             headerGrid.Children.Clear();
             headerGrid.ColumnDefinitions.Clear();
 
+            if (!string.IsNullOrEmpty(CustomColumnDefinition))
+            {
+                headerGrid.ColumnDefinitions = ColumnDefinitions.Parse(CustomColumnDefinition);
+            }
+
             foreach (var property in itemType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
             {
-                headerGrid.ColumnDefinitions.Add(new ColumnDefinition(100, GridUnitType.Pixel));
+                //headerGrid.ColumnDefinitions.Add(new ColumnDefinition(100, GridUnitType.Pixel));
                 var h = new TextBlock();
                 h.Text = GetHeaderText(property);
                 h.SetValue(Avalonia.Controls.Grid.RowProperty, 0);
