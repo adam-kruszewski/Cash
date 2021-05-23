@@ -26,5 +26,8 @@
       <Setter Property="VerticalAlignment" Value="Center" />
       <Setter Property="Padding" Value="5" />
     </Style>
+    <Style Selector="TextBlock.Count">
+      <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
   </Application.Styles>
 </Application>

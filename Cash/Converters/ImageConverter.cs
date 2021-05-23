@@ -1,13 +1,9 @@
-﻿using Avalonia;
-using Avalonia.Data.Converters;
-using Avalonia.Media.Imaging;
+﻿using Avalonia.Data.Converters;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
-using System.Text;
 
 namespace Cash.Converters
 {

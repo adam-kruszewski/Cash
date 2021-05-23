@@ -10,12 +10,40 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icons\jablko.jpg" />
+    <None Remove="Images\1.jpg" />
+    <None Remove="Images\10.jpg" />
+    <None Remove="Images\100.jpg" />
+    <None Remove="Images\10gr.jpg" />
+    <None Remove="Images\1gr.jpg" />
+    <None Remove="Images\2.jpg" />
+    <None Remove="Images\20.jpg" />
+    <None Remove="Images\200.jpg" />
+    <None Remove="Images\20gr.jpg" />
+    <None Remove="Images\2gr.jpg" />
+    <None Remove="Images\5.jpg" />
+    <None Remove="Images\50.jpg" />
+    <None Remove="Images\50gr.jpg" />
+    <None Remove="Images\5gr.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icons\jablko.jpg" />
     <EmbeddedResource Include="Icons\remove.png" />
     <EmbeddedResource Include="Icons\sum.png" />
     <EmbeddedResource Include="Icons\new.png" />
+    <EmbeddedResource Include="Images\1.jpg" />
+    <EmbeddedResource Include="Images\10.jpg" />
+    <EmbeddedResource Include="Images\100.jpg" />
+    <EmbeddedResource Include="Images\10gr.jpg" />
+    <EmbeddedResource Include="Images\1gr.jpg" />
+    <EmbeddedResource Include="Images\2.jpg" />
+    <EmbeddedResource Include="Images\20.jpg" />
+    <EmbeddedResource Include="Images\200.jpg" />
+    <EmbeddedResource Include="Images\20gr.jpg" />
+    <EmbeddedResource Include="Images\2gr.jpg" />
+    <EmbeddedResource Include="Images\5.jpg" />
+    <EmbeddedResource Include="Images\50.jpg" />
+    <EmbeddedResource Include="Images\50gr.jpg" />
+    <EmbeddedResource Include="Images\5gr.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.0" />
