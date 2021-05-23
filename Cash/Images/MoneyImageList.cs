@@ -53,6 +53,11 @@ namespace Cash.Images
             throw new ArgumentException("Bad money value");
         }
 
+        public static IEnumerable<decimal> GetValues()
+        {
+            return Mappings.Keys;
+        }
+
         private static string FullName(string name)
         {
             return $"{typeof(MoneyImageList).Namespace}.{name}";

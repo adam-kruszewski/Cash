@@ -21,6 +21,8 @@ namespace Cash.ViewModels
             {
                 var model = (DisplayMoneyViewModel)App.ServiceProvider.GetService(typeof(DisplayMoneyViewModel));
 
+                model.SetSum(ProductList.GetSum());
+
                 var result = await ShowMoney.Handle(model);
             });
         }

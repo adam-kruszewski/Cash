@@ -1,12 +1,16 @@
 ﻿using Cash.Controls.ViewModels;
 using Cash.Images;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Cash.ViewModels
 {
     public class DisplayMoneyViewModel : ViewModelBase
     {
         public GenericListViewModel<ConvertedMoneyItem> ConvertedMoney { get; private set; }
+
+        private decimal sum = 0m;
 
         public DisplayMoneyViewModel(
             GenericListViewModel<ConvertedMoneyItem> convertedMoney)
@@ -26,6 +30,35 @@ namespace Cash.ViewModels
                 });
 
             convertedMoney.Items = tempList;
+        }
+
+        public void SetSum(decimal sum)
+        {
+            this.sum = sum;
+
+            var sumToPay = sum;
+
+            var allValues = MoneyImageList.GetValues().OrderByDescending(o => o);
+
+            var result = new List<ConvertedMoneyItem>();
+
+            while (sumToPay > 0)
+            {
+                var value = allValues.First(o => o <= sumToPay);
+
+                var count = Math.Floor(sumToPay / value);
+
+                result.Add(new ConvertedMoneyItem
+                {
+                    Value = value,
+                    Count = (int)count,
+                    MoneyImage = MoneyImageList.GetImageForValue(value)
+                });
+
+                sumToPay -= value * count;
+            }
+
+            ConvertedMoney.Items = result;
         }
     }
 }

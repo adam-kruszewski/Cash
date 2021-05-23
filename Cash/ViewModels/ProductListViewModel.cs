@@ -41,5 +41,10 @@ namespace Cash.ViewModels
             itemsToDisplay.Clear();
             NotifyItemToDisplayChanged();
         }
+
+        public decimal GetSum()
+        {
+            return itemsToDisplay.Sum(o => o.Total);
+        }
     }
 }
