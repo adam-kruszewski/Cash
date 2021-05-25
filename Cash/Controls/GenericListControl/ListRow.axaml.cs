@@ -46,7 +46,7 @@ namespace Cash.Controls.GenericListControl
                 ColumnDefinition = modelWithColumnDefinition.ColumnDefinition;
             }
 
-            var itemType = DataContext.GetType().GetGenericArguments().Single();
+            var itemType = GetItemType();
 
             if (!mainGrid.Children.Any())
             {
@@ -54,11 +54,14 @@ namespace Cash.Controls.GenericListControl
             }
         }
 
+        private Type GetItemType()
+        {
+            return DataContext.GetType().GetGenericArguments().Single();
+        }
+
         private void AddColumnControl(PropertyInfo p, int i)
         {
-            var valueProperty = DataContext.GetType().GetProperty("Value");
-
-            var value = valueProperty.GetValue(DataContext);
+            object value = GetRowModel();
 
             var valueToDisplay = p.GetValue(value);
 
@@ -70,7 +73,7 @@ namespace Cash.Controls.GenericListControl
             }
             else
             {
-                newControl = PrepareTextControl(i, valueToDisplay);
+                newControl = PrepareTextControl(i, valueToDisplay, p);
             }
 
             newControl.Classes = new Classes("GridColumn");
@@ -79,6 +82,14 @@ namespace Cash.Controls.GenericListControl
             newControl.SetValue(Avalonia.Controls.Grid.ColumnProperty, i);
 
             mainGrid.Children.Insert(i, newControl);
+        }
+
+        private object GetRowModel()
+        {
+            var valueProperty = DataContext.GetType().GetProperty("Value");
+
+            var value = valueProperty.GetValue(DataContext);
+            return value;
         }
 
         private Image PrepareImageControl(int i, System.Drawing.Image imageToDisplay)
@@ -93,13 +104,40 @@ namespace Cash.Controls.GenericListControl
             return imageControl;
         }
 
-        private TextBlock PrepareTextControl(int i, object valueToDisplay)
+        private TextBlock PrepareTextControl(int i, object valueToDisplay, PropertyInfo property)
         {
             var textControl = new TextBlock();
-            textControl.Text = valueToDisplay?.ToString() ?? "";
+
+            textControl.Text = PrepareTextToDisplay(property, valueToDisplay, textControl);
             textControl.Margin = Thickness.Parse("3");
 
             return textControl;
+        }
+
+        private string PrepareTextToDisplay(PropertyInfo property, object valueToDisplay, TextBlock textControl)
+        {
+            var textValue = valueToDisplay?.ToString() ?? "";
+
+            if (property.GetCustomAttribute<DisplayTextFunctionAttribute>() != null)
+            {
+                var displayMethodAttribute = property.GetCustomAttribute<DisplayTextFunctionAttribute>();
+
+                if (!string.IsNullOrEmpty(displayMethodAttribute.MethodNameForDisplay))
+                {
+                    MethodInfo method = FindMethodForDisplayValue(displayMethodAttribute);
+                    return (string)method.Invoke(DataContext, new object[] { valueToDisplay, GetRowModel() });
+                }
+            }
+
+            return textValue;
+        }
+
+        private MethodInfo FindMethodForDisplayValue(DisplayTextFunctionAttribute displayMethodAttribute)
+        {
+            return GetItemType()
+                .GetMethod(
+                    displayMethodAttribute.MethodNameForDisplay,
+                    BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Public | BindingFlags.Instance);
         }
 
         private void RunForEachColumn(Type itemType, Action<PropertyInfo, int> action)
