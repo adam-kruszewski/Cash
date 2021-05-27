@@ -29,8 +29,6 @@ namespace Cash.Controls
             }
         }
 
-        public int Number { get; set; }
-
         public GenericList()
         {
             InitializeComponent();
@@ -41,9 +39,6 @@ namespace Cash.Controls
             AvaloniaXamlLoader.Load(this);
 
             headerGrid = this.FindControl<Grid>("HeaderGrid");
-
-            //listboxContent = this.FindControl<ListBox>("ListContent");
-            //listboxContent.AttachedToVisualTree += ListboxContent_AttachedToVisualTree;
         }
 
         protected override void OnDataContextChanged(EventArgs e)
@@ -122,8 +117,6 @@ namespace Cash.Controls
                 var x1 = column.Bounds.X + column.Bounds.Width;
                 context.DrawLine(pen, new Point(x1, 0), new Point(x1, Bounds.Height));
             }
-
-            //context.DrawLine(new Pen(Color.FromRgb(255, 0, 0).ToUint32()), new Point(0, 10), new Point(100, 10));
         }
     }
 }

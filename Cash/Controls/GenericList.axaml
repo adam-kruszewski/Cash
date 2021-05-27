@@ -4,29 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Cash.Controls.GenericList"
-             xmlns:listControls="clr-namespace:Cash.Controls.GenericListControl">
+             xmlns:listControls="clr-namespace:Cash.Controls.GenericListControl"
+             xmlns:myControls="clr-namespace:Cash.Controls">
   <UserControl.Styles>
     <Style Selector="TextBlock.GridHeader">
       <Setter Property="Foreground" Value="Red" />
     </Style>
   </UserControl.Styles>
 
-  <StackPanel Orientation="Vertical">
+  <myControls:OneControlGrowingDockPanel GrowingControlName="ScrollViewer" VerticalAlignment="Stretch">
     <!--<TextBlock Text="Generic list"/>
     <TextBlock Text="{Binding Header}"/>-->
 
-    <Grid Name="HeaderGrid" >
+    <Grid Name="HeaderGrid">
       <TextBlock Text="abc" Grid.Row="0" Grid.Column="0" />
     </Grid>
 
-    <ListBox Items="{Binding Rows}" Name="ListContent">
-      <ListBox.ItemTemplate>
-        <DataTemplate>
-          <!--<TextBlock Text="Row a"/>-->
-         <listControls:ListRow DataContext="{Binding .}"/>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
-  </StackPanel>
+    <ScrollViewer Name="ScrollViewer" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Top">
+      <ListBox Items="{Binding Rows}" Name="ListContent">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <listControls:ListRow DataContext="{Binding .}"/>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </ScrollViewer>
+
+    <TextBlock Text="Test"/>
+  </myControls:OneControlGrowingDockPanel>
 
 </UserControl>

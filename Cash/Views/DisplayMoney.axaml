@@ -6,7 +6,10 @@
         x:Class="Cash.Views.DisplayMoney"
         Title="DisplayMoney"
         xmlns:myControls="clr-namespace:Cash.Controls">
-  <StackPanel>
-    <myControls:GenericList DataContext="{Binding ConvertedMoney}" Number="1" CustomColumnDefinition="100, 50, 200"/>
-  </StackPanel>
+  <DockPanel VerticalAlignment="Stretch">
+    <myControls:GenericList DataContext="{Binding ConvertedMoney}" 
+                            CustomColumnDefinition="100, 50, 200"
+                            VerticalContentAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
+  </DockPanel>
 </Window>
