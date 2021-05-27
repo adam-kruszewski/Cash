@@ -30,7 +30,6 @@
       </ListBox>
     </ScrollViewer>
 
-    <TextBlock Text="Test"/>
   </myControls:OneControlGrowingDockPanel>
 
 </UserControl>

@@ -5,7 +5,5 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Cash.Controls.GenericListControl.ListRow">
   <Grid Name="MainGrid">
-    <!--<TextBlock Text="jablko" Grid.Row="0" Grid.Column="0"/>
-    <TextBlock Text="gruszka" Grid.Row="0" Grid.Column="1"/>-->
   </Grid>
 </UserControl>

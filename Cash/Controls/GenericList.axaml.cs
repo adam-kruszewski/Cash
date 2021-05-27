@@ -84,14 +84,13 @@ namespace Cash.Controls
 
             foreach (var property in itemType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
             {
-                //headerGrid.ColumnDefinitions.Add(new ColumnDefinition(100, GridUnitType.Pixel));
-                var h = new TextBlock();
-                h.Text = GetHeaderText(property);
-                h.SetValue(Avalonia.Controls.Grid.RowProperty, 0);
-                h.SetValue(Avalonia.Controls.Grid.ColumnProperty, headerGrid.Children.Count);
-                headerGrid.Children.Insert(headerGrid.Children.Count, h);
-                h.Classes = new Classes("GridHeader");
-                h.Margin = Thickness.Parse("3");
+                var headerTextBlock = new TextBlock();
+                headerTextBlock.Text = GetHeaderText(property);
+                headerTextBlock.SetValue(Avalonia.Controls.Grid.RowProperty, 0);
+                headerTextBlock.SetValue(Avalonia.Controls.Grid.ColumnProperty, headerGrid.Children.Count);
+                headerGrid.Children.Insert(headerGrid.Children.Count, headerTextBlock);
+                headerTextBlock.Classes = new Classes("GridHeader");
+                headerTextBlock.Margin = Thickness.Parse("3");
             }
         }
 
@@ -109,13 +108,18 @@ namespace Cash.Controls
         {
             base.Render(context);
 
+            DrawGridLines(context, headerGrid, Bounds);
+        }
+
+        private static void DrawGridLines(DrawingContext context, Grid gridControl, Rect controlBounds)
+        {
             var pen = new Pen(Color.FromRgb(255, 0, 0).ToUint32());
 
-            context.DrawLine(pen, new Point(0, 0), new Point(0, Bounds.Height));
-            foreach (var column in headerGrid.Children)
+            context.DrawLine(pen, new Point(0, 0), new Point(0, controlBounds.Height));
+            foreach (var column in gridControl.Children)
             {
                 var x1 = column.Bounds.X + column.Bounds.Width;
-                context.DrawLine(pen, new Point(x1, 0), new Point(x1, Bounds.Height));
+                context.DrawLine(pen, new Point(x1, 0), new Point(x1, controlBounds.Height));
             }
         }
     }
